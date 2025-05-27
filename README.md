@@ -1,6 +1,6 @@
-# SQuAD-v2 Answer Extraction and Unanswerable Detection
+# SQuAD-v2 Answer-Span Extraction (BERT-base)
 
-This repo shows how far a single, straightforward BERT-base can go on the formidable SQuAD 2.0 dataset, even when we only let it look at 30 % of the data. Alongside, we sketch an “UnQDetect” add-on that tells you when the best answer is “¯\_(ツ)_/¯ can’t answer”.
+This repo shows how far a single, straightforward BERT-base can go on the formidable SQuAD 2.0 dataset, even when we only let it look at 30 % of the data. 
 
 ## Dataset  
 

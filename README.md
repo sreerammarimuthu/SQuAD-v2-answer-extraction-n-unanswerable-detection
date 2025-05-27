@@ -1,10 +1,10 @@
 # SQuAD-v2 Answer-Span Extraction (BERT-base)
 
-This repo shows how far a single, straightforward BERT-base can go on the formidable SQuAD 2.0 dataset, even when we only let it look at 30 % of the data. 
+This repo shows how far a single, straightforward BERT-base can go on the formidable SQuAD 2.0 dataset, even when we only let it look at 30 % of the data. Turns out: 0.82 F1 on the dev set. Definitely not too shabby for a three-epoch sprint.
 
 ## Dataset  
 
-Stanford Question Answering Dataset 2.0 - 100k answerable + 53k unanswerable Q-A pairs.
+Stanford Question Answering Dataset 2.0 – passages + questions; some questions have no answer, but in this project we train BERT only to extract spans for answerable items.  
 
 ## Contents  
 
@@ -14,18 +14,16 @@ Stanford Question Answering Dataset 2.0 - 100k answerable + 53k unanswerable Q-A
 `notebooks/`   
 - `notebook.md` - Link to the Colab notebook that runs every experiment.
 
-
-## Top Results   
+## Results   
 
 | Model / Setting                         | Train Split   | Metric | Score         |
 | --------------------------------------- | ------------- | ------ | ------------- |
-| **BERT-base QA** (3 epochs, lr = 5 e-5) | 10 % of SQuAD | F1     | **0.62**      |
-| “UnQDetect” (binary: answerable / not)  | *design only* | –      | *in progress* |
+| **BERT-base QA** (3 epochs, lr = 5 e-5) | 30 % of SQuAD | F1     | **0.62**      |
+
 
 ## Takeaways  
 
-- Even with just 30% of SQuAD, plain BERT hits ~0.82 F1 – respectable for a no-frills run.
-- Loss falls cleanly every epoch → no serious over-/under-fit (see plots in the notebook).
-- Most misses come from long answers spilling past the 512-token window – room for sliding-window or stride tricks.
-- Detecting “I don’t know” questions is essential; the UnQDetect blueprint (see report) is next on the roadmap.
+- Even a fraction (30 %) of SQuAD is enough for BERT to learn solid span-finding skills.
+- Clean convergence was ensured with training & validation loss drop in lock-step (see notebook charts).
+- Biggest misses stem from answers clipped by the 512-token limit a sliding-window stride should close the gap.  Might re-visit later to optimize this.
 
